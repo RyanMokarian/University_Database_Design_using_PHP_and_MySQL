@@ -26,10 +26,7 @@ if (!empty($_POST) && isset($_POST['__insert'])) {
 //show the whole table after insertion 
 echo '<br />';
 echo "<br>Table " . $tableName . " after insertion:";
-
-$sql_Display = "SELECT * FROM $tableName";
-$result = $conn->query($sql_Display);
-
+$result = getAllRecords($conn, $tableName);
 if ($result->num_rows > 0) {
     // output data of each row
 	echo "<table>";
@@ -75,8 +72,7 @@ if (!empty($_POST) && !empty($_POST['name1']) && !empty($_POST['name2'])) {
 echo '<br />';
 echo "<br>Table " . $tableName . " after deletion:";
 
-$sql_Display = "SELECT * FROM $tableName";
-$result = $conn->query($sql_Display);
+$result = getAllRecords($conn, $tableName);
 
 if ($result->num_rows > 0) {
     // output data of each row

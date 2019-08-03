@@ -39,3 +39,9 @@ function insertIntoTable($conn, $tableName, $columns, $postData) {
 		return "Error: " . $sql_Insert . "<br>" . $conn->error;
 	}
 }
+
+function getAllRecords($conn, $tableName) {
+    $sql_Display = "SELECT * FROM $tableName";
+    return $conn->query($sql_Display);
+}
+
