@@ -1,6 +1,7 @@
 <?php
-require 'db.php';
+require 'helpers.php';
 
+$conn = getConnection();
 // genrate the input form:
 $tableName = 'Class';
 
