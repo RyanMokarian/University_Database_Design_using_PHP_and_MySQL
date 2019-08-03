@@ -7,3 +7,9 @@ foreach ($columns as $column) {
 	echo '<input type="text" name="'. $column. '" value=""><br>';
 }
 echo '<input type="submit" value="Submit"></form>';  
+$postData = $_POST;
+//process insert by getting the input from $POST
+if (!empty($_POST) && isset($_POST['__insert'])) {
+	unset($postData['__insert']);
+	echo insertIntoTable($conn, $tableName, $columns, $postData);
+}
