@@ -6,7 +6,7 @@ $tables = getAllTables($conn);
        <fieldset>
           <legend>Select a table</legend>
           <p>
-            <label>Tables</label>
+            <label>Table:</label>
             <select id = "table_name" name='table_name'>
                <?php
                   foreach ($tables as $table) {
@@ -16,6 +16,6 @@ $tables = getAllTables($conn);
                ?>
                </select>
           </p>
-          <input type="submit" value="Submit">
+          <input type="submit" value="GO">
        </fieldset>
 </form>
