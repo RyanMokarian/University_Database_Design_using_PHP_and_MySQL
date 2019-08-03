@@ -4,9 +4,12 @@ if (!empty($_POST) && isset($_POST['__delete'])) {
 }
 
 if (!empty($_POST) && isset($_POST['__update'])) {
-	print_r($_POST);	
+	$postData = $_POST;
+	unset($postData['__update']);
+	unset($postData['pk_name']);
+	unset($postData['pk_value']);
+	echo updateTable($conn, $tableName, $postData, $_POST['pk_name'], $_POST['pk_value']);
 }
-
 
 $result = getAllRecords($conn, $tableName);
 
@@ -32,8 +35,8 @@ if ($result->num_rows > 0) {
 		echo '<input type="hidden" name="pk_name" value="'. $pk .'">';
 		echo '<input type="hidden" name="pk_value" value="'. $row[$pk] .'">';
 		echo "<td><input type=\"submit\" value=\"Update\"></td>";
-
 		echo '</form>';
+
 		echo '<form action="" method="post">';
 		echo '<input type="hidden" name="__delete" value="">';
 		echo '<input type="hidden" name="pk_name" value="'. $pk .'">';

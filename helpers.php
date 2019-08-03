@@ -70,3 +70,24 @@ function getPrimaryKeyName($conn, $tableName) {
 
     return '';
 }
+
+function updateTable($conn, $tableName, $postData, $pkName, $pkValue) {
+    $sql_Update = "UPDATE $tableName SET ";
+    
+    $setPart = '';
+    foreach ($postData as $k => $v) {
+        $setPart = $setPart . $k . ' = "' . $v . '", '; 
+    }
+
+    $setPart = rtrim($setPart, ', ');
+
+    $wherPart = " WHERE $pkName = $pkValue";
+
+    $sql_Update = $sql_Update . $setPart . $wherPart;
+
+    if ($conn->query($sql_Update) === TRUE){ 
+		return "Record was updated successfully."; 
+	} else{ 
+	    return "Error: " . $sql_Update . $conn->error;
+	}
+}
