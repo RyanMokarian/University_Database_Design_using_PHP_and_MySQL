@@ -3,7 +3,7 @@ require 'helpers.php';
 
 $conn = getConnection();
 // genrate the input form:
-$tableName = 'Class';
+$tableName = isset($_GET['table_name']) ? $_GET['table_name'] : 'Student';
 
 $columns = getColumns($conn, $tableName);
 
