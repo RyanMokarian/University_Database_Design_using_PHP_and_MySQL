@@ -15,6 +15,17 @@ function getConnection() {
     return $conn;
 }
 
+function getAllTables($conn) {
+    $sql = "SHOW TABLES";
+    $res = $conn->query($sql);
+    
+    $r = [];
+    while($row = $res->fetch_assoc()){
+        $r[] = $row[0];
+    }
+    return $r;    
+}
+
 function getColumns($conn, $tableName) {
     $sql = "SHOW COLUMNS FROM $tableName";
     $res = $conn->query($sql);
