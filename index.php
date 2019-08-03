@@ -13,7 +13,7 @@ while($row = $res->fetch_assoc()){
 }
 
 echo '<form action="" method="post">';
-echo '<input type="hidden" name="__insert" value=""><br>';
+echo '<input type="hidden" name="__insert" value="1"><br>';
 foreach ($columns as $column) {
 	echo $column;
 	echo '</br>';
