@@ -7,7 +7,7 @@ $tableName = 'Class';
 
 $columns = getColumns($conn, $tableName);
 
-include 'views/create.php';
+include __DIR__ . '/views/create.php';
 
 $postData = $_POST;
 //process insert by getting the input from $POST
