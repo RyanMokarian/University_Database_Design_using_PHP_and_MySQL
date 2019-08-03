@@ -11,8 +11,9 @@ $columns = [];
 while($row = $res->fetch_assoc()){
     $columns[] = $row['Field'];
 }
-echo '<form action="" method="post">';
 
+echo '<form action="" method="post">';
+echo '<input type="hidden" name="__insert" value=""><br>';
 foreach ($columns as $column) {
 	echo $column;
 	echo '</br>';
@@ -21,7 +22,7 @@ foreach ($columns as $column) {
 echo '<input type="submit" value="Submit"></form>';  
 
 //process insert by getting the input from $POST
-if (!empty($_POST)) {
+if (!empty($_POST) && !empty($_POST['__insert'])) {
 	$implodedFieldsName = implode(",", $columns);
 	$implodedValues = "'" . implode("','", $_POST) . "'";
 	$sql_Insert = "INSERT INTO $tableName ($implodedFieldsName)
