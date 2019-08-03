@@ -21,10 +21,12 @@ foreach ($columns as $column) {
 }
 echo '<input type="submit" value="Submit"></form>';  
 
+$postData = $_POST;
 //process insert by getting the input from $POST
 if (!empty($_POST) && isset($_POST['__insert'])) {
+	unset($postData['__insert']);
 	$implodedFieldsName = implode(",", $columns);
-	$implodedValues = "'" . implode("','", $_POST) . "'";
+	$implodedValues = "'" . implode("','", $postData) . "'";
 	$sql_Insert = "INSERT INTO $tableName ($implodedFieldsName)
 		VALUES ($implodedValues)";
 
