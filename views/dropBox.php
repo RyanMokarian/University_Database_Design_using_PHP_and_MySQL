@@ -10,7 +10,7 @@ $tables = getAllTables($conn);
             <select id = "table_name" name='table_name'>
                <?php
                   foreach ($tables as $table) {
-                     $selected = $_GET['table_name'] ? 'selected' : '';
+                     $selected = ($tableName == $table) ? 'selected' : '';
                      echo "<option value = \"{$table}\" $selected>{$table}</option>";
                   }
                ?>
