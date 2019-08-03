@@ -21,7 +21,7 @@ function getAllTables($conn) {
     
     $r = [];
     while($row = $res->fetch_assoc()){
-        $r[] = $row[0];
+        $r[] = $row;
     }
     return $r;    
 }
