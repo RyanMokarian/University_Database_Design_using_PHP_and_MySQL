@@ -20,7 +20,7 @@ function getAllTables($conn) {
     $res = $conn->query($sql);
     
     $r = [];
-    while($row = $res->fetch_assoc()){
+    while($row = $res->fetch_array()){
         $r[] = $row;
     }
     return $r;    
