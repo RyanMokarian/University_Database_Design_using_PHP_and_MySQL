@@ -1,9 +1,14 @@
 <?php
+include 'db.php';
 require 'helpers.php';
 
-$conn = getConnection();
+$conn = getConnection($servername, $username, $password, $dbname);
 // genrate the input form:
 $tableName = isset($_GET['table_name']) ? $_GET['table_name'] : '';
+
+if ($tableName) {
+    $pk = getPrimaryKeyName($conn, $tableName);
+}
 
 include __DIR__ . '/views/dropBox.php';
 
@@ -14,7 +19,5 @@ if (empty($tableName)) {
 $columns = getColumns($conn, $tableName);
 
 include __DIR__ . '/views/create.php';
-
-include __DIR__ . '/views/delete.php';
 
 include __DIR__ . '/views/showAllRecords.php';

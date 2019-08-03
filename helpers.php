@@ -1,10 +1,7 @@
 <?php
 
-function getConnection() {
-    $servername = "qqc5531.encs.concordia.ca";	
-    $username = "qqc55311";
-    $password = "p1usp1us";	
-    $dbname = "qqc55311";
+function getConnection($servername, $username, $password, $dbname) {
+    
     // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
     // Check connection
@@ -64,3 +61,12 @@ function deleteFromTable($conn, $tableName, $pkName, $id) {
 	}
 }
 
+function getPrimaryKeyName($conn, $tableName) {
+    $sql = "show keys from $tableName where key_name = 'PRIMARY'";
+    $res = $conn->query($sql);
+    while ($row = $res->fetch_assoc()) {
+        return $row['Column_name'];
+    }
+
+    return '';
+}
