@@ -45,3 +45,12 @@ function getAllRecords($conn, $tableName) {
     return $conn->query($sql_Display);
 }
 
+function deleteFromTable($conn, $tableName, $pkName, $id) {
+    $sql_Delete = "DELETE FROM " . $tableName . " WHERE " . $pkName . " = " . $id; 
+	if($conn->query($sql_Delete) === TRUE){ 
+		return "Record was deleted successfully."; 
+	} else{ 
+	    return "Error: " . $sql_Delete . $conn->error;
+	}
+}
+

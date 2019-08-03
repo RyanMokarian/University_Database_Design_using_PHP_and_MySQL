@@ -31,12 +31,7 @@ echo 'Record_Number_To_Delete: <input type="text" name="name2"><br>';
 echo '<input type="submit"></form>';
 echo '<br />';
 if (!empty($_POST) && !empty($_POST['name1']) && !empty($_POST['name2'])) {
-	$sql_Delete = "DELETE FROM " . $tableName . " WHERE " . $_POST["name1"] . " = " . $_POST["name2"]; 
-	if($conn->query($sql_Delete) === TRUE){ 
-		echo "<br>Record was deleted successfully."; 
-	} else{ 
-			echo "Error: " . $sql_Delete . "<br>" . $conn->error;
-	}
+	echo deleteFromTable($conn, $tableName, $_POST['name1'], $_POST['name2']);
 }
 
 //show the whole table after deletion 
@@ -67,9 +62,4 @@ if ($result->num_rows > 0) {
 } else {
     echo "0 results";
 }
-
-
-mysqli_close($conn);
-?>
-
 
