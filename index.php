@@ -70,18 +70,18 @@ if ($result->num_rows > 0) {
 
 // The primary key and record number for deletion are asked 
 echo '<form action="" method="post">';
-echo '$Primary_Key: <input type="text" name="name1"><br>';
-echo '$Record_Number_To_Delete: <input type="text" name="name2"><br>';
+echo 'Primary_Key: <input type="text" name="name1"><br>';
+echo 'Record_Number_To_Delete: <input type="text" name="name2"><br>';
 echo '<input type="submit"></form>';
 echo '<br />';
-$sql_Delete = "DELETE FROM " . $tableName . " WHERE " . $_POST["name1"] . " = " . $_POST["name2"]; 
-
-if($conn->query($sql_Delete) === TRUE){ 
-    echo "<br>Record was deleted successfully."; 
-} else{ 
-		echo "Error: " . $sql_Delete . "<br>" . $conn->error;
-} 
-
+if (!empty($_POST) && !empty($_POST['name1']) && !empty($_POST['name2'])) {
+	$sql_Delete = "DELETE FROM " . $tableName . " WHERE " . $_POST["name1"] . " = " . $_POST["name2"]; 
+	if($conn->query($sql_Delete) === TRUE){ 
+		echo "<br>Record was deleted successfully."; 
+	} else{ 
+			echo "Error: " . $sql_Delete . "<br>" . $conn->error;
+	}
+}
 
 //show the whole table after deletion 
 echo '<br />';
