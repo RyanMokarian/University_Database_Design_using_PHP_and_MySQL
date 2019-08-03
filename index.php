@@ -3,7 +3,13 @@ require 'helpers.php';
 
 $conn = getConnection();
 // genrate the input form:
-$tableName = isset($_GET['table_name']) ? $_GET['table_name'] : 'Student';
+$tableName = isset($_GET['table_name']) ? $_GET['table_name'] : '';
+
+include __DIR__ . '/views/dropBox.php';
+
+if (empty($tableName)) {
+    return;
+}
 
 $columns = getColumns($conn, $tableName);
 
