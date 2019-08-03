@@ -5,13 +5,7 @@ $conn = getConnection();
 // genrate the input form:
 $tableName = 'Class';
 
-$sql = "SHOW COLUMNS FROM $tableName";
-$res = $conn->query($sql);
-
-$columns = [];
-while($row = $res->fetch_assoc()){
-    $columns[] = $row['Field'];
-}
+$columns = getColumns($conn, $tableName);
 
 echo '<form action="" method="post">';
 echo '<input type="hidden" name="__insert" value=""><br>';
@@ -26,17 +20,7 @@ $postData = $_POST;
 //process insert by getting the input from $POST
 if (!empty($_POST) && isset($_POST['__insert'])) {
 	unset($postData['__insert']);
-	$implodedFieldsName = implode(",", $columns);
-	$implodedValues = "'" . implode("','", $postData) . "'";
-	$sql_Insert = "INSERT INTO $tableName ($implodedFieldsName)
-		VALUES ($implodedValues)";
-
-	echo "<br />";
-	if ($conn->query($sql_Insert) === TRUE) {
-		echo "New record created successfully";
-	} else {
-		echo "Error: " . $sql_Insert . "<br>" . $conn->error;
-	}
+	echo insertIntoTable($conn, $tableName, $columns, $postData);
 }
 
 //show the whole table after insertion 

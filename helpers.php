@@ -15,3 +15,27 @@ function getConnection() {
     
     return $conn;
 }
+
+function getColumns($conn, $tableName) {
+    $sql = "SHOW COLUMNS FROM $tableName";
+    $res = $conn->query($sql);
+    
+    $columns = [];
+    while($row = $res->fetch_assoc()){
+        $columns[] = $row['Field'];
+    }
+    return $columns;    
+}
+
+function insertIntoTable($conn, $tableName, $columns, $postData) {
+    $implodedFieldsName = implode(",", $columns);
+	$implodedValues = "'" . implode("','", $postData) . "'";
+	$sql_Insert = "INSERT INTO $tableName ($implodedFieldsName)
+		VALUES ($implodedValues)";
+
+	if ($conn->query($sql_Insert) === TRUE) {
+		return "New record created successfully";
+	} else {
+		return "Error: " . $sql_Insert . "<br>" . $conn->error;
+	}
+}
