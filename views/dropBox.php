@@ -19,4 +19,3 @@ $tables = getAllTables($conn);
           </p>
        </fieldset>
 </form>
-

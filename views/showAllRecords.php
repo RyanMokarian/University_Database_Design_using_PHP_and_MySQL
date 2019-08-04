@@ -11,6 +11,13 @@ if (!empty($_POST) && isset($_POST['__update'])) {
 	echo updateTable($conn, $tableName, $postData, $_POST['pk_name'], $_POST['pk_value']);
 }
 
+$postData = $_POST;
+//process insert by getting the input from $POST
+if (!empty($_POST) && isset($_POST['__insert'])) {
+	unset($postData['__insert']);
+	echo insertIntoTable($conn, $tableName, $columns, $postData);
+}
+
 $result = getAllRecords($conn, $tableName);
 // output data of each row
 echo "<table>";
