@@ -29,17 +29,19 @@ $columns = getColumns($conn, $tableName);
 include __DIR__ . '/views/showAllRecords.php';
 ?>
 <script>
+    var studentLevel;
+    var studentCredits;
     $('.Student_level').on('input', function() {
         console.log('changed');
-        var studentLevel = $(this).val().trim();
-        var studentCredits = $(this).next('.Student_credits').val();
+        studentLevel = $(this).val().trim();
+        studentCredits = $(this).closest('td').next('td').find('.Student_credits').val();
         console.log(studentLevel);
         console.log(studentCredits);
         if (!studentCredits) {
             if (studentLevel === 'undergraduate') {
-                $(this).next('.Student_credits').val(90);
+                $(this).closest('td').next('td').find('.Student_credits').val(90);
             } else if (studentLevel === 'graduate') {
-                $(this).next('.Student_credits').val(44);
+                $(this).closest('td').next('td').find('.Student_credits').val(44);
             }
         }
     });
