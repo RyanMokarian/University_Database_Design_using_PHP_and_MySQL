@@ -55,7 +55,7 @@ if ($result->num_rows > 0) {
     }
 
 } else {
-	echo "0 results, create new record:";	
+	echo "0 results, create new record:<br />";	
 }
 echo '<tr>';
 echo '<form action="" method="post">';
