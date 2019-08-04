@@ -20,9 +20,10 @@ if ($result->num_rows > 0) {
 	foreach ($columns as $column) {
 		echo "<th>$column</th>";
 	}
-	echo "<th>Delete</th>";
 	echo "<th>Update</th>";
+	echo "<th>Delete</th>";
 	echo '</tr>';
+	
     while($row = $result->fetch_assoc()) {
 		echo '<tr>';
 		echo '<form action="" method="post">';
