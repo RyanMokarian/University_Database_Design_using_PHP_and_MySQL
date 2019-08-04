@@ -32,14 +32,14 @@ include __DIR__ . '/views/showAllRecords.php';
     $('.Student_level').on('input', function() {
         console.log('changed');
         var studentLevel = $(this).val().trim();
-        var studentCredits = studentLevel.closest('.Student_credits').val().toLowerCase();
+        var studentCredits = $(this).closest('.Student_credits').val().toLowerCase();
         console.log(studentLevel);
         console.log(studentCredits);
         if (!studentCredits) {
             if (studentLevel === 'undergraduate') {
-                studentCredits.val(90);
+                $(this).closest('.Student_credits').val(90);
             } else if (studentLevel === 'graduate') {
-                studentCredits.val(44);
+                $(this).closest('.Student_credits').val(44);
             }
         }
     });
