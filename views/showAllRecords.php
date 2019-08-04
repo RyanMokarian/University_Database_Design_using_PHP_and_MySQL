@@ -12,18 +12,18 @@ if (!empty($_POST) && isset($_POST['__update'])) {
 }
 
 $result = getAllRecords($conn, $tableName);
+// output data of each row
+echo "<table>";
+echo '<tr>';
+foreach ($columns as $column) {
+	echo "<th>$column</th>";
+}
+echo "<th></th>";
+echo "<th></th>";
+echo '</tr>';
 
 if ($result->num_rows > 0) {
-    // output data of each row
-	echo "<table>";
-	echo '<tr>';
-	foreach ($columns as $column) {
-		echo "<th>$column</th>";
-	}
-	echo "<th>Update</th>";
-	echo "<th>Delete</th>";
-	echo '</tr>';
-	
+    
     while($row = $result->fetch_assoc()) {
 		echo '<tr>';
 		echo '<form action="" method="post">';
@@ -46,8 +46,8 @@ if ($result->num_rows > 0) {
 		echo '</form>';
 		echo '</tr>';
     }
-	echo "</table>";
 
 } else {
     echo "0 results";
 }
+echo "</table>";
