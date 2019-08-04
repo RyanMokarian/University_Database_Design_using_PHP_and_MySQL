@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>qqc5531 - main project</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
 <?php
 include 'db.php';
 require 'helpers.php';
@@ -19,3 +27,7 @@ if (empty($tableName)) {
 $columns = getColumns($conn, $tableName);
 
 include __DIR__ . '/views/showAllRecords.php';
+?>
+
+</body>
+</html>
