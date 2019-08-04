@@ -7,24 +7,23 @@
 
 <body>
 <script>
-    $('.Student_level').on('input', function() {
-        var studentLevelElm = $(this);
-        var studentCreditsElm = studentLevelElm.closest('td').next('td').find('.Student_credits');
-    
-        var studentLevel = studentLevelElm.val().trim().toLowerCase();
-        var studentCredits = studentCreditsElm.val();
-        
-        if (!studentCredits) {
-            if (studentLevel === 'undergraduate') {
-                studentCreditsElm.val(90);
-            } else if (studentLevel === 'graduate') {
-                studentCreditsElm.val(44);
-            }
-        }
-    });
-
     $(document).ready(function(){
         console.log('jquery loaded');
+        $('.Student_level').on('input', function() {
+            var studentLevelElm = $(this);
+            var studentCreditsElm = studentLevelElm.closest('td').next('td').find('.Student_credits');
+        
+            var studentLevel = studentLevelElm.val().trim().toLowerCase();
+            var studentCredits = studentCreditsElm.val();
+            
+            if (!studentCredits) {
+                if (studentLevel === 'undergraduate') {
+                    studentCreditsElm.val(90);
+                } else if (studentLevel === 'graduate') {
+                    studentCreditsElm.val(44);
+                }
+            }
+        });
     });
 </script>
 
