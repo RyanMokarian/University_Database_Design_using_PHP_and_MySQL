@@ -29,19 +29,18 @@ $columns = getColumns($conn, $tableName);
 include __DIR__ . '/views/showAllRecords.php';
 ?>
 <script>
-    var studentLevel;
-    var studentCredits;
     $('.Student_level').on('input', function() {
-        console.log('changed');
-        studentLevel = $(this).val().trim().toLowerCase();
-        studentCredits = $(this).closest('td').next('td').find('.Student_credits').val();
-        console.log(studentLevel);
-        console.log(studentCredits);
+        var studentLevelElm = $(this);
+        var studentCreditsElm = studentLevelElm..closest('td').next('td').find('.Student_credits');
+    
+        var studentLevel = studentLevelElm.val().trim().toLowerCase();
+        var studentCredits = studentLevelElm.val();
+        
         if (!studentCredits) {
             if (studentLevel === 'undergraduate') {
-                $(this).closest('td').next('td').find('.Student_credits').val(90);
+                studentLevelElm.val(90);
             } else if (studentLevel === 'graduate') {
-                $(this).closest('td').next('td').find('.Student_credits').val(44);
+                studentLevelElm.val(44);
             }
         }
     });
