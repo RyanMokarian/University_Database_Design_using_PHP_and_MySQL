@@ -28,6 +28,10 @@ $columns = getColumns($conn, $tableName);
 
 include __DIR__ . '/views/showAllRecords.php';
 ?>
-
+<script>
+    $(document).ready(function(){
+        console.log('jquery loaded');
+    });
+</script>
 </body>
 </html>
