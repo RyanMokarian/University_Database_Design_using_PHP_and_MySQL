@@ -30,8 +30,11 @@ include __DIR__ . '/views/showAllRecords.php';
 ?>
 <script>
     $('#Student_level').on('input', function() {
+        console.log('changed');
         var studentLevel = $('#Student_level').val().trim();
         var studentCredits = $('#Student_credits').val().toLowerCase();
+        console.log(studentLevel);
+        console.log(studentCredits);
         if (!studentCredits) {
             if (studentLevel === 'undergraduate') {
                 $('#Student_credits').val(90);
