@@ -14,8 +14,9 @@ $tables = getAllTables($conn);
                      echo "<option value = \"{$table}\" $selected>{$table}</option>";
                   }
                ?>
-               </select>
+            </select>
+            <input type="submit" value="GO">
           </p>
-          <input type="submit" value="GO">
        </fieldset>
 </form>
+
