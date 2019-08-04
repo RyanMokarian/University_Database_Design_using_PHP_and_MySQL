@@ -36,7 +36,7 @@ if ($result->num_rows > 0) {
 		echo '<form action="" method="post">';
 		foreach ($row as $k => $v) {
 			echo "<td>";
-			echo "<input type=\"text\" id=\"{$tableName}_{$k}\" name=\"{$k}\" value=\"$v\">";
+			echo "<input type=\"text\" class=\"{$tableName}_{$k}\" name=\"{$k}\" value=\"$v\">";
 			echo "</td>";
 		}
 		echo '<input type="hidden" name="__update" value="">';
@@ -63,7 +63,7 @@ echo '<input type="hidden" name="__insert" value=""><br>';
 foreach ($columns as $column) {
 	//echo $column;
 	echo "<td>";
-	echo '<input type="text" id=\"{$tableName}_{$column}\" name="'. $column. '" value="">';
+	echo '<input type="text" class=\"' . "{$tableName}_{$column}" .'" name="'. $column. '" value="">';
 	echo "</td>";
 }
 echo '<td> <input type="submit" value="Insert"></td></form>';
