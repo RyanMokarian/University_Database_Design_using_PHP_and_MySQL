@@ -34,13 +34,13 @@ include __DIR__ . '/views/showAllRecords.php';
         var studentCreditsElm = studentLevelElm.closest('td').next('td').find('.Student_credits');
     
         var studentLevel = studentLevelElm.val().trim().toLowerCase();
-        var studentCredits = studentLevelElm.val();
+        var studentCredits = studentCreditsElm.val();
         
         if (!studentCredits) {
             if (studentLevel === 'undergraduate') {
-                studentLevelElm.val(90);
+                studentCreditsElm.val(90);
             } else if (studentLevel === 'graduate') {
-                studentLevelElm.val(44);
+                studentCreditsElm.val(44);
             }
         }
     });
