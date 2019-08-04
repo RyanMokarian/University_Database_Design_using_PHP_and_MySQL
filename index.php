@@ -31,7 +31,7 @@ include __DIR__ . '/views/showAllRecords.php';
 <script>
     $('.Student_level').on('input', function() {
         var studentLevelElm = $(this);
-        var studentCreditsElm = studentLevelElm..closest('td').next('td').find('.Student_credits');
+        var studentCreditsElm = studentLevelElm.closest('td').next('td').find('.Student_credits');
     
         var studentLevel = studentLevelElm.val().trim().toLowerCase();
         var studentCredits = studentLevelElm.val();
