@@ -36,7 +36,7 @@ if ($result->num_rows > 0) {
 		echo '<form action="" method="post">';
 		foreach ($row as $k => $v) {
 			echo "<td>";
-			echo "<input type=\"text\" name=\"{$k}\" value=\"$v\">";
+			echo "<input type=\"text\" id=\"{$tableName}_{$k}\" name=\"{$k}\" value=\"$v\">";
 			echo "</td>";
 		}
 		echo '<input type="hidden" name="__update" value="">';

@@ -29,6 +29,10 @@ $columns = getColumns($conn, $tableName);
 include __DIR__ . '/views/showAllRecords.php';
 ?>
 <script>
+    $('#Student_level').on('input', function() {
+        console.log('student level changed');
+    });
+
     $(document).ready(function(){
         console.log('jquery loaded');
     });
