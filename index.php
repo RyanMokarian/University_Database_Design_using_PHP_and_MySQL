@@ -6,6 +6,28 @@
 </head>
 
 <body>
+<script>
+    $('.Student_level').on('input', function() {
+        var studentLevelElm = $(this);
+        var studentCreditsElm = studentLevelElm.closest('td').next('td').find('.Student_credits');
+    
+        var studentLevel = studentLevelElm.val().trim().toLowerCase();
+        var studentCredits = studentCreditsElm.val();
+        
+        if (!studentCredits) {
+            if (studentLevel === 'undergraduate') {
+                studentCreditsElm.val(90);
+            } else if (studentLevel === 'graduate') {
+                studentCreditsElm.val(44);
+            }
+        }
+    });
+
+    $(document).ready(function(){
+        console.log('jquery loaded');
+    });
+</script>
+
 <?php
 include 'db.php';
 require 'helpers.php';
@@ -28,26 +50,5 @@ $columns = getColumns($conn, $tableName);
 
 include __DIR__ . '/views/showAllRecords.php';
 ?>
-<script>
-    $('.Student_level').on('input', function() {
-        var studentLevelElm = $(this);
-        var studentCreditsElm = studentLevelElm.closest('td').next('td').find('.Student_credits');
-    
-        var studentLevel = studentLevelElm.val().trim().toLowerCase();
-        var studentCredits = studentCreditsElm.val();
-        
-        if (!studentCredits) {
-            if (studentLevel === 'undergraduate') {
-                studentCreditsElm.val(90);
-            } else if (studentLevel === 'graduate') {
-                studentCreditsElm.val(44);
-            }
-        }
-    });
-
-    $(document).ready(function(){
-        console.log('jquery loaded');
-    });
-</script>
 </body>
 </html>
