@@ -33,7 +33,7 @@ include __DIR__ . '/views/showAllRecords.php';
     var studentCredits;
     $('.Student_level').on('input', function() {
         console.log('changed');
-        studentLevel = $(this).val().trim();
+        studentLevel = $(this).val().trim().toLowerCase();
         studentCredits = $(this).closest('td').next('td').find('.Student_credits').val();
         console.log(studentLevel);
         console.log(studentCredits);
