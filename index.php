@@ -18,6 +18,6 @@ if (empty($tableName)) {
 
 $columns = getColumns($conn, $tableName);
 
-include __DIR__ . '/views/create.php';
-
 include __DIR__ . '/views/showAllRecords.php';
+
+include __DIR__ . '/views/create.php';
