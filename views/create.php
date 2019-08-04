@@ -9,7 +9,7 @@ foreach ($columns as $column) {
 	echo '<input type="text" name="'. $column. '" value="">';
 	echo "</td>";
 }
-echo '<input type="submit" value="Submit"></form>';
+echo '<td> <input type="submit" value="Submit"></td></form>';
 echo '</tr>';
 echo "</table>";
 $postData = $_POST;
