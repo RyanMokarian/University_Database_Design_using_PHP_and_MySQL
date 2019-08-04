@@ -31,7 +31,7 @@ include __DIR__ . '/views/showAllRecords.php';
 <script>
     $('.Student_level').on('input', function() {
         console.log('changed');
-        var studentLevel = this.val().trim();
+        var studentLevel = $(this).val().trim();
         var studentCredits = studentLevel.closest('.Student_credits').val().toLowerCase();
         console.log(studentLevel);
         console.log(studentCredits);
