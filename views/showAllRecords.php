@@ -48,6 +48,17 @@ if ($result->num_rows > 0) {
     }
 
 } else {
-    echo "0 results";
+	echo "0 results, create new record:";
+	echo '<tr>';
+	echo '<form action="" method="post">';
+	echo '<input type="hidden" name="__insert" value=""><br>';
+	foreach ($columns as $column) {
+		//echo $column;
+		echo "<td>";
+		echo '<input type="text" name="'. $column. '" value="">';
+		echo "</td>";
+	}
+	echo '<td> <input type="submit" value="Insert"></td></form>';
+	echo '</tr>';	
 }
 echo "</table>";
