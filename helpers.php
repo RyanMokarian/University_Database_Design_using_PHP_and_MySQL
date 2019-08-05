@@ -146,3 +146,66 @@ function isStudentCompletedPrereq($conn, $courseId, $studentId)
 
     return true;
 }
+
+
+function isStudentEligibleRf($conn, $studentId) 
+{
+	// Retrieve supervisorId
+	/* Student(pId, gpa, programId, level, credits, advisorId, supervisorId, base) */
+	$sql = "SELECT supervisorId, gpa FROM Student WHERE studentId = '{$studentId}'";
+    $res = $conn->query($sql);
+    while ($row = $res->fetch_assoc()) {
+        $supervisorId = $row['supervisorId'];
+        $gpa = $row['gpa'];
+    }
+	
+	// Retrieve if this professor is registered for an available ResearchFund
+	//  without a student occupying it
+	/* ResearchFund(rfId, pId_i, pId_s, rfDescription, rfAmount, rfTerm) */
+	$sql = "SELECT pId_i FROM ResearchFund WHERE pId_i = '{$supervisorId}' AND pId_s=NULL";
+    $res = $conn->query($sql);
+	
+	// Returns restriction result
+	return !($res->num_rows == 0 || $gpa<3.0);
+}
+
+function isStudentEligibleTa($conn, $pId, $courseId, $hourToAdd)
+{
+	// Retrieve gpa
+	/* Student(pId, gpa, programId, level, credits, advisorId, supervisorId, base) */
+	$sql = "SELECT level, gpa FROM Student WHERE pId = '{$pId}' AND level='Graduate'";
+    $res = $conn->query($sql);
+    while ($row = $res->fetch_assoc()) {
+        $gpa = $row['gpa'];
+        $level = $row['level'];
+    }
+	
+	if ($gpa<3.2 || $level!="Graduate"){
+		return false;
+	}
+	else {
+		// Retrieve workHours
+		/* TaActivity(pId, courseId, sectionId, activity, workHours, taTerm) */
+		$sql = "SELECT COUNT(DISTINCT courseId) AS numActivities, SUM(workHours) AS sumWorkHours FROM TaActivity WHERE pId = '{$pId}'";
+		$res = $conn->query($sql);
+		while ($row = $res->fetch_assoc()) {
+			$sumWorkHours = $row['sumWorkHours'];
+			$numActivities = $row['numActivities'];
+		}
+		return($sumWorkHours + $hourToAdd <= 260 && numActivities == 1);
+	}
+}
+
+// Checks if a certain period overlaps with a with a timeSlot
+function isTimeConflict($conn, $timeSlotId, $givenStart, $givenEnd)
+{
+	// Walk through timeSlots
+	/* TimeSlot(timeSlotId, begin, end) */
+	$sql = "SELECT begin,end FROM TimeSlot WHERE timeSlotId = '{$timeSlotId}'";
+	$res = $conn->query($sql);
+	while ($row = $res->fetch_assoc()) {
+		$begin = $row['begin'];
+		$end = $row['end'];
+	}
+	return (($begin <= $givenEnd) and ($givenStart <= $end));
+}
