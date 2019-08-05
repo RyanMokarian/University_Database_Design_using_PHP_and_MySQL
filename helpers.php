@@ -110,8 +110,6 @@ function isStudentCompletedPrereq($conn, $courseId, $studentId)
 
     $res = $conn->query($sql);
 
-    var_dump($res);
-
     $prerequisites = [];
     while ($row = $res->fetch_assoc()) {
         $prerequisites[] = $row['prereqId'];
@@ -122,7 +120,7 @@ function isStudentCompletedPrereq($conn, $courseId, $studentId)
     foreach ($prerequisites as $prerequisite) {
         $sql = "
             SELECT score FROM StudentRegisterSection
-            courseId = {$prerequisite}
+            WHERE courseId = {$prerequisite}
             AND pId = {$studentId}
         ";
 
