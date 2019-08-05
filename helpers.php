@@ -110,10 +110,14 @@ function isStudentCompletedPrereq($conn, $courseId, $studentId)
 
     $res = $conn->query($sql);
 
+    print_r($res);
+
     $prerequisites = [];
     while ($row = $res->fetch_assoc()) {
         $prerequisites[] = $row['prereqId'];
     }
+
+    print_r($prerequisites);
 
     foreach ($prerequisites as $prerequisite) {
         $sql = "
@@ -123,12 +127,14 @@ function isStudentCompletedPrereq($conn, $courseId, $studentId)
         ";
 
         $res = $conn->query($sql);
+        print_r($res);
         if ($res->num_rows == 0) {
             return false;
         }
 
         while ($row = $res->fetch_assoc()) {
             $r = $row['score'];
+            print_r($r);
             if ($r < $passedGrade) {
                 return false;
             }
