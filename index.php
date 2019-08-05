@@ -49,8 +49,6 @@ $columns = getColumns($conn, $tableName);
 
 include __DIR__ . '/views/showAllRecords.php';
 
-$r = isStudentCompletedPrereq($conn, 1, 61);
-var_dump($r);
 ?>
 </body>
 </html>
