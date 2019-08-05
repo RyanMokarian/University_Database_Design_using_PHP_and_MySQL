@@ -48,6 +48,9 @@ if (empty($tableName)) {
 $columns = getColumns($conn, $tableName);
 
 include __DIR__ . '/views/showAllRecords.php';
+
+$r = isStudentCompletedPrereq($conn, 1, 1);
+var_dump($r);
 ?>
 </body>
 </html>

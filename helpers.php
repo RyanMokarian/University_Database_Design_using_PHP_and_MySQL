@@ -99,3 +99,41 @@ function updateTable($conn, $tableName, $postData, $pkName, $pkValue)
         return "Error: " . $sql_Update . $conn->error;
     }
 }
+
+function isStudentCompletedPrereq($conn, $courseId, $studentId) 
+{
+    $passedGrade = 1;
+    $sql = "
+        SELECT prereqId FROM Prerequisite
+        WHERE  courseId = {$courseId}
+    ";
+
+    $res = $conn->query($sql);
+
+    $prerequisites = [];
+    while ($row = $res->fetch_assoc()) {
+        $prerequisites[] = $row['prereqId'];
+    }
+
+    foreach ($prerequisites as $$prerequisite) {
+        $sql = "
+            SELECT score FROM StudentRegisterSection
+            courseId = {$prerequisite}
+            AND pId = {$studentId}
+        ";
+
+        $res = $conn->query($sql);
+        if ($res->num_rows == 0) {
+            return false;
+        }
+
+        while ($row = $res->fetch_assoc()) {
+            $r = $row['score'];
+            if ($r < $passedGrade) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
