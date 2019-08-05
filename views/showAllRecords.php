@@ -24,10 +24,13 @@ $postData = $_POST;
 //process insert by getting the input from $POST
 if (!empty($_POST) && isset($_POST['__insert'])) {
 	unset($postData['__insert']);
-	if (!$isAllowed) {
-		echo 'Student does not statisfy prerequisite conditions';
-		return;
-	} 
+	if ($tableName == 'StudentRegisterSection') {
+		$isAllowed = isStudentCompletedPrereq($conn, $postData['courseId'], $postData['pId']);
+		if (!$isAllowed) {
+			echo 'Student does not statisfy prerequisite conditions';
+			return;
+		}
+	}
 	echo insertIntoTable($conn, $tableName, $columns, $postData);
 }
 
