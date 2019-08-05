@@ -192,7 +192,7 @@ function isStudentEligibleTa($conn, $pId, $courseId, $hourToAdd)
 			$sumWorkHours = $row['sumWorkHours'];
 			$numActivities = $row['numActivities'];
 		}
-		return($sumWorkHours + $hourToAdd <= 260 && numActivities == 1);
+		return($sumWorkHours + $hourToAdd <= 260 and numActivities == 1);
 	}
 }
 
