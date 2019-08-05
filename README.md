@@ -1,6 +1,6 @@
 Title: University Database Design using PHP and MySQL
 
-Category: Data Base
+Category: Web Application, Data Base
 
 Author: Colabortation of Ryan Mokarian, Mani Ahmadi and Bilal Qandeel
 
