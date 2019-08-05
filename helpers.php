@@ -115,7 +115,7 @@ function isStudentCompletedPrereq($conn, $courseId, $studentId)
         $prerequisites[] = $row['prereqId'];
     }
 
-    foreach ($prerequisites as $$prerequisite) {
+    foreach ($prerequisites as $prerequisite) {
         $sql = "
             SELECT score FROM StudentRegisterSection
             courseId = {$prerequisite}
