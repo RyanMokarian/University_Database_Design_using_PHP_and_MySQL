@@ -103,7 +103,7 @@ function updateTable($conn, $tableName, $postData, $pkName, $pkValue)
 function isStudentCompletedPrereq($conn, $courseId, $studentId) 
 {
     $passingGradeTag = "D-";
-    $sql = "SELECT score FROM ScoreDescription WHERE scoreTag = {$passingGradeTag}";
+    $sql = "SELECT score FROM ScoreDescription WHERE scoreTag = '{$passingGradeTag}'";
     $res = $conn->query($sql);
     while ($row = $res->fetch_assoc()) {
         $passedGrade = $row['score'];
