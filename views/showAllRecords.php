@@ -8,6 +8,15 @@ if (!empty($_POST) && isset($_POST['__update'])) {
 	unset($postData['__update']);
 	unset($postData['pk_name']);
 	unset($postData['pk_value']);
+	
+	if ($tableName == 'StudentRegisterSection') {
+		$isAllowed = isStudentCompletedPrereq($conn, $postData['courseId'], $postData['pId']);
+		if (!$isAllowed) {
+			echo 'Student does not statisfy prerequisite conditions';
+			return;
+		} 
+	}
+
 	echo updateTable($conn, $tableName, $postData, $_POST['pk_name'], $_POST['pk_value']);
 }
 
@@ -15,6 +24,10 @@ $postData = $_POST;
 //process insert by getting the input from $POST
 if (!empty($_POST) && isset($_POST['__insert'])) {
 	unset($postData['__insert']);
+	if (!$isAllowed) {
+		echo 'Student does not statisfy prerequisite conditions';
+		return;
+	} 
 	echo insertIntoTable($conn, $tableName, $columns, $postData);
 }
 
