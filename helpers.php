@@ -102,7 +102,13 @@ function updateTable($conn, $tableName, $postData, $pkName, $pkValue)
 
 function isStudentCompletedPrereq($conn, $courseId, $studentId) 
 {
-    $passedGrade = 1;
+    $passingGradeTag = "D-";
+    $sql = "SELECT score FROM ScoreDescription WHERE scoreTag = {$$passingGradeTag}";
+    $res = $conn->query($sql);
+    while ($row = $res->fetch_assoc()) {
+        $passedGrade = $row['score'];
+    }
+
     $sql = "
         SELECT prereqId FROM Prerequisite
         WHERE  courseId = {$courseId}
@@ -115,8 +121,6 @@ function isStudentCompletedPrereq($conn, $courseId, $studentId)
         $prerequisites[] = $row['prereqId'];
     }
 
-    var_dump($prerequisites);
-
     foreach ($prerequisites as $prerequisite) {
         $sql = "
             SELECT score FROM StudentRegisterSection
@@ -125,15 +129,15 @@ function isStudentCompletedPrereq($conn, $courseId, $studentId)
         ";
 
         $res = $conn->query($sql);
-        var_dump($res);
+        
         if ($res->num_rows == 0) {
             return false;
         }
 
         while ($row = $res->fetch_assoc()) {
-            var_dump($row);
+            
             $r = $row['score'];
-            var_dump($r);
+            
             if ($r < $passedGrade) {
                 return false;
             }
